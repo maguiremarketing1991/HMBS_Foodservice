@@ -81,6 +81,7 @@ p{ margin: 0; }
   font-weight: 600; border-radius: 2px; border: 1px solid transparent;
   transition: transform .25s var(--ease), background .25s, border-color .25s, color .25s;
 }
+.btn-normal-case{ text-transform: none; letter-spacing: normal; }
 .btn-primary{ background: var(--copper); color: var(--charcoal); }
 .btn-primary:hover{ transform: translateY(-2px); background: var(--copper-light); }
 .btn-ghost{
@@ -152,6 +153,7 @@ p{ margin: 0; }
   color: var(--text-muted-dark); font-weight: 500;
   transition: color .2s;
   position: relative;
+  white-space: nowrap;
 }
 #primary-nav a:hover{ color: var(--parchment); }
 #primary-nav a.nav-cta{
@@ -179,7 +181,7 @@ p{ margin: 0; }
   padding: 140px 6vw 60px;
 }
 .hero-media{ position: absolute; inset: 0; z-index: 0; }
-.hero-media img{ width: 100%; height: 100%; object-fit: cover; opacity: .96; }
+.hero-media img{ width: 100%; height: 100%; object-fit: cover; object-position: 78% 45%; opacity: .96; }
 .hero-overlay{
   position: absolute; inset: 0; z-index: 1;
   background:
@@ -604,7 +606,7 @@ p{ margin: 0; }
   .masonry{ columns: 3 180px; }
 }
 
-@media (max-width: 720px){
+@media (max-width: 1024px){
   #primary-nav{
     position: fixed; top: 0; right: 0; height: 100vh; height: 100dvh; width: min(78vw, 320px);
     background: var(--charcoal); padding: 100px 32px 40px;
@@ -617,6 +619,9 @@ p{ margin: 0; }
   #primary-nav ul{ flex-direction: column; align-items: flex-start; gap: 26px; }
   #primary-nav a.nav-cta{ margin-top: 10px; }
   #nav-toggle{ display: flex; }
+}
+
+@media (max-width: 720px){
   .logo-img{ height: 40px; }
   #site-header.scrolled .logo-img{ height: 34px; }
   .hero-logo-img{ height: 62px; margin-bottom: 22px; }
