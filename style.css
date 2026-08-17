@@ -187,6 +187,13 @@ p{ margin: 0; }
     linear-gradient(180deg, rgba(16,20,18,.1) 0%, rgba(16,20,18,.04) 32%, rgba(16,20,18,.6) 100%),
     linear-gradient(100deg, rgba(16,20,18,.68) 0%, rgba(16,20,18,.38) 38%, rgba(16,20,18,0) 66%);
 }
+/* Soft hand-off into the section below, instead of a hard cut at the hero's edge */
+#hero::after{
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0; height: 22vh; min-height: 160px; max-height: 260px;
+  z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(250,250,247,0) 0%, var(--bone) 92%);
+}
 .hero-content{ position: relative; z-index: 2; max-width: 640px; }
 .hero-logo-img{
   height: 92px; width: auto; margin-bottom: 30px;
@@ -214,7 +221,7 @@ p{ margin: 0; }
 
 .scroll-cue{
   position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-  z-index: 2; width: 26px; height: 44px; border: 1px solid rgba(242,235,217,.35);
+  z-index: 2; width: 26px; height: 44px; border: 1.5px solid var(--copper);
   border-radius: 14px; background: transparent;
 }
 .scroll-cue span{
@@ -598,6 +605,7 @@ p{ margin: 0; }
   .fs-grid{ grid-template-columns: repeat(2, 1fr); }
   .product-grid{ grid-template-columns: repeat(2, 1fr); }
   .why-grid{ grid-template-columns: repeat(2, 1fr); }
+  .brochure-cards{ grid-template-columns: repeat(2, 1fr); }
   .footer-grid{ grid-template-columns: 1fr 1fr; }
   .stat-strip{ grid-template-columns: repeat(3, 1fr); }
   .stat-item:nth-child(3){ border-right: none; }
@@ -610,6 +618,7 @@ p{ margin: 0; }
     background: var(--charcoal); padding: 100px 32px 40px;
     transform: translateX(100%); transition: transform .4s var(--ease);
     box-shadow: -20px 0 60px rgba(0,0,0,.3);
+    overflow-y: auto;
   }
   #primary-nav.open{ transform: translateX(0); }
   #primary-nav ul{ flex-direction: column; align-items: flex-start; gap: 26px; }
@@ -631,6 +640,7 @@ p{ margin: 0; }
   .fs-grid{ grid-template-columns: 1fr; }
   .product-grid{ grid-template-columns: 1fr 1fr; gap: 14px; }
   .why-grid{ grid-template-columns: 1fr; }
+  .brochure-cards{ grid-template-columns: 1fr; }
 
   .timeline{ overflow-x: auto; justify-content: flex-start; gap: 30px; padding-bottom: 6px; }
   .timeline::before{ left: 20px; right: 20px; }
