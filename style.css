@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HUGH MAGUIRE BUTCHERS & SMOKEHOUSE — FOODSERVICE LANDING PAGE
+   HUGH MAGUIRE BUTCHERS & SMOKEHOUSE, FOODSERVICE LANDING PAGE
    Brand palette: charcoal / smoke / cream / warm white / forest / copper
    Typography: Fraunces (serif, headings) + Inter (sans, body/nav)
    ========================================================================== */
@@ -8,11 +8,11 @@
   /* brand colours */
   --charcoal: #1C2420;      /* smokehouse midnight */
   --forest: #2E3D32;        /* deep forest */
-  --copper: #B8905A;        /* burnished copper — the single warm accent */
+  --copper: #B8905A;        /* burnished copper, the single warm accent */
   --copper-light: #D4AA78;
   --parchment: #F2EBD9;     /* aged parchment / cream */
   --bone: #FAFAF7;          /* bone / warm white */
-  --oak: #3A2818;           /* smoked oak — footer */
+  --oak: #3A2818;           /* smoked oak, footer */
   --text-ink: #2C1E10;
   --text-muted-light: #6B5C44;  /* secondary text on light backgrounds */
   --text-muted-dark: #8AA090;   /* secondary text on dark backgrounds */
@@ -269,7 +269,7 @@ p{ margin: 0; }
 .tb-sep{ color: var(--copper); font-family: var(--font-sans); }
 
 /* ==========================================================================
-   OUR STORY — alternating rows
+   OUR STORY, alternating rows
    ========================================================================== */
 .story-row{
   display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
@@ -322,7 +322,7 @@ p{ margin: 0; }
    FOODSERVICE SOLUTIONS
    ========================================================================== */
 .fs-grid{
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   max-width: var(--max-width); margin: 0 auto;
 }
 .fs-card{
@@ -462,6 +462,37 @@ p{ margin: 0; }
 .contact-note{ margin-top: 20px; font-size: 11.5px; color: var(--text-muted-dark); }
 .contact-note code{ background: rgba(0,0,0,.2); padding: 2px 6px; border-radius: 2px; }
 
+.form-divider{
+  display: flex; align-items: center; gap: 16px; margin: 40px 0 26px;
+  font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted-dark);
+}
+.form-divider::before, .form-divider::after{ content: ''; flex: 1; height: 1px; background: var(--border-dark); }
+
+.contact-form{ display: flex; flex-direction: column; gap: 18px; }
+.form-row{ display: flex; gap: 18px; }
+.form-row .form-field{ flex: 1; min-width: 0; }
+.form-field label{
+  display: block; font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-muted-dark); margin-bottom: 8px;
+}
+.form-field input, .form-field textarea{
+  width: 100%; padding: 13px 15px; background: rgba(255,255,255,.05);
+  border: 1px solid var(--border-dark); border-radius: 3px; color: var(--parchment);
+  font-family: 'Inter', Arial, sans-serif; font-size: 14.5px; transition: border-color .2s, background .2s;
+}
+.form-field input::placeholder, .form-field textarea::placeholder{ color: rgba(138,160,144,.6); }
+.form-field input:focus, .form-field textarea:focus{
+  outline: none; border-color: var(--copper); background: rgba(255,255,255,.08);
+}
+.form-field textarea{ resize: vertical; min-height: 100px; }
+.form-hp{ position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-status{ font-size: 13px; min-height: 18px; color: var(--copper-light); }
+.form-status.is-error{ color: #E39A8C; }
+
+@media (max-width: 720px){
+  .form-row{ flex-direction: column; gap: 18px; }
+}
+
 /* ==========================================================================
    BROCHURES CTA
    ========================================================================== */
@@ -478,6 +509,9 @@ p{ margin: 0; }
 }
 .brochure-card:hover{ transform: translateY(-6px); border-color: var(--copper); box-shadow: 0 18px 40px rgba(28,36,32,.1); }
 .brochure-card .icon{ width: 30px; height: 30px; color: var(--copper); margin-bottom: 18px; }
+.brochure-media{ aspect-ratio: 16/10; border-radius: 3px; overflow: hidden; margin-bottom: 18px; background: var(--forest); }
+.brochure-media img{ width: 100%; height: 100%; object-fit: cover; transition: transform .5s var(--ease); }
+.brochure-card:hover .brochure-media img{ transform: scale(1.06); }
 .brochure-card h3{ font-size: 18px; margin-bottom: 8px; color: var(--text-ink); }
 .brochure-card p{ font-size: 13px; line-height: 1.6; color: var(--text-muted-light); margin-bottom: 18px; }
 .brochure-cta{ font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--copper); font-weight: 600; }

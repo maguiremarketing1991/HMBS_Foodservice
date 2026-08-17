@@ -1,5 +1,5 @@
 /* ==========================================================================
-   HUGH MAGUIRE BUTCHERS & SMOKEHOUSE — script.js
+   HUGH MAGUIRE BUTCHERS & SMOKEHOUSE, script.js
    Vanilla JS only. No frameworks, no dependencies.
    ========================================================================== */
 (function () {
@@ -20,10 +20,11 @@
     initBackToTop();
     initFooterYear();
     initBrochurePlaceholder();
+    initContactForm();
   });
 
   /* ---------------------------------------------------------------------
-     PRELOADER — fades out once the page (and images) have settled
+     PRELOADER, fades out once the page (and images) have settled
   --------------------------------------------------------------------- */
   function initPreloader() {
     var preloader = document.getElementById('preloader');
@@ -41,7 +42,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     STICKY NAV — solid background once the hero has been scrolled past
+     STICKY NAV, solid background once the hero has been scrolled past
   --------------------------------------------------------------------- */
   function initHeaderScroll() {
     var header = document.getElementById('site-header');
@@ -99,7 +100,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     REVEAL ON SCROLL — fade/slide elements up into view once
+     REVEAL ON SCROLL, fade/slide elements up into view once
   --------------------------------------------------------------------- */
   function initRevealOnScroll() {
     var items = document.querySelectorAll('.reveal');
@@ -123,7 +124,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     ANIMATED COUNTERS — stat strip numbers count up once visible
+     ANIMATED COUNTERS, stat strip numbers count up once visible
   --------------------------------------------------------------------- */
   function initCounters() {
     var counters = document.querySelectorAll('.stat-num[data-count]');
@@ -169,7 +170,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     TIMELINE — click a node to reveal its panel
+     TIMELINE, click a node to reveal its panel
   --------------------------------------------------------------------- */
   function initTimeline() {
     var nodes = document.querySelectorAll('.timeline-node');
@@ -195,7 +196,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     TESTIMONIAL SLIDER — auto-rotate, dot navigation, pause on hover
+     TESTIMONIAL SLIDER, auto-rotate, dot navigation, pause on hover
   --------------------------------------------------------------------- */
   function initTestimonialSlider() {
     var slider = document.querySelector('.testimonial-slider');
@@ -344,7 +345,7 @@
     var brochures = {
       'brochure-deli': 'Delicatessen brochure coming soon. Add the PDF to assets/documents/ and update the link in index.html.',
       'brochure-hospitality': 'Hotel & Restaurant brochure coming soon. Add the PDF to assets/documents/ and update the link in index.html.',
-      'brochure-beef': 'Dry Aged Beef brochure coming soon. Add the PDF to assets/documents/ and update the link in index.html.'
+      'brochure-qsr': 'Quick Service Restaurants brochure coming soon. Add the PDF to assets/documents/ and update the link in index.html.'
     };
     Object.keys(brochures).forEach(function (id) {
       var link = document.getElementById(id);
@@ -354,6 +355,63 @@
           e.preventDefault();
           alert(brochures[id]);
         }
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     CONTACT FORM, submits to Formspree via fetch so the page never
+     reloads. Falls back to a normal form POST (which redirects to
+     Formspree's own confirmation page) if fetch/JS is unavailable.
+     Requires the real Formspree endpoint to be set on the <form action>
+     in index.html, see the HTML comment just above the form.
+  --------------------------------------------------------------------- */
+  function initContactForm() {
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var status = form.querySelector('.form-status');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      // Honeypot: if the hidden field got filled in, it's a bot. Let the
+      // normal (harmless) submission proceed without calling fetch.
+      var honeypot = form.querySelector('.form-hp');
+      if (honeypot && honeypot.value) return;
+
+      if (form.getAttribute('action').indexOf('YOUR_FORM_ID') !== -1) {
+        // Endpoint hasn't been configured yet, don't silently fail.
+        e.preventDefault();
+        if (status) {
+          status.textContent = 'Form is not yet connected. Please call or email us directly for now.';
+          status.classList.add('is-error');
+        }
+        return;
+      }
+
+      e.preventDefault();
+      if (submitBtn) submitBtn.disabled = true;
+      if (status) { status.textContent = 'Sending…'; status.classList.remove('is-error'); }
+
+      fetch(form.getAttribute('action'), {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (response) {
+        if (response.ok) {
+          if (status) status.textContent = 'Thanks, we’ve got your message and will be in touch within one business day.';
+          form.reset();
+        } else {
+          response.json().then(function (data) {
+            var msg = (data && data.errors && data.errors.length) ? data.errors.map(function (er) { return er.message; }).join(', ') : 'Something went wrong. Please try calling or emailing us instead.';
+            if (status) { status.textContent = msg; status.classList.add('is-error'); }
+          }).catch(function () {
+            if (status) { status.textContent = 'Something went wrong. Please try calling or emailing us instead.'; status.classList.add('is-error'); }
+          });
+        }
+      }).catch(function () {
+        if (status) { status.textContent = 'Something went wrong. Please try calling or emailing us instead.'; status.classList.add('is-error'); }
+      }).finally(function () {
+        if (submitBtn) submitBtn.disabled = false;
       });
     });
   }
