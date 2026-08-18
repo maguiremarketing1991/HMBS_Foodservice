@@ -65,6 +65,8 @@ p{ margin: 0; }
 .eyebrow-line{ width: 28px; height: 1px; background: var(--copper); flex-shrink: 0; }
 
 .section{ padding: var(--section-pad) 6vw; }
+.section-seam-top{ padding-top: clamp(28px, 3vw, 44px); }
+.section-seam-bottom{ padding-bottom: clamp(28px, 3vw, 44px); }
 .section-dark{ background: var(--charcoal); color: var(--parchment); }
 .section-forest{ background: var(--forest); color: var(--parchment); }
 .section-parchment{ background: var(--parchment); }
