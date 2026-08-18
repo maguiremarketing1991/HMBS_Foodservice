@@ -394,7 +394,6 @@ p{ margin: 0; }
 }
 .team-member h3{ font-size: 15px; font-family: var(--font-sans); font-weight: 600; color: var(--text-ink); margin-bottom: 5px; }
 .team-member p{ font-size: 12px; line-height: 1.55; color: var(--text-muted-light); }
-.team-cta{ max-width: var(--max-width); margin: 0 auto; }
 
 @media (max-width: 720px){
   .team-grid{ justify-content: center; gap: 26px 18px; }
