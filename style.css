@@ -108,10 +108,10 @@ p{ margin: 0; }
   transition: opacity .6s var(--ease), visibility .6s var(--ease);
 }
 #preloader.loaded{ opacity: 0; visibility: hidden; }
-.preloader-mark{ text-align: center; }
+.preloader-mark{ text-align: center; padding: 0 24px; }
 .preloader-word{
-  font-family: var(--font-serif); color: var(--parchment); font-size: 15px;
-  letter-spacing: .3em; display: block; margin-bottom: 14px;
+  font-family: var(--font-serif); color: var(--parchment); font-size: clamp(12px, 3vw, 15px);
+  letter-spacing: .18em; display: block; margin-bottom: 14px;
 }
 .preloader-line{
   display: block; width: 60px; height: 1px; margin: 0 auto; background: var(--border-dark);
