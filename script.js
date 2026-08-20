@@ -67,6 +67,7 @@
       var isOpen = nav.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.classList.toggle('nav-open', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
@@ -75,6 +76,7 @@
         nav.classList.remove('open');
         toggle.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
         document.body.style.overflow = '';
       });
     });

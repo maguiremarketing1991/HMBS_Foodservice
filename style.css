@@ -102,7 +102,7 @@ p{ margin: 0; }
    PRELOADER
    ========================================================================== */
 #preloader{
-  position: fixed; inset: 0; z-index: 9999;
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 9999;
   background: var(--charcoal);
   display: flex; align-items: center; justify-content: center;
   transition: opacity .6s var(--ease), visibility .6s var(--ease);
@@ -118,7 +118,7 @@ p{ margin: 0; }
   position: relative; overflow: hidden;
 }
 .preloader-line::after{
-  content: ''; position: absolute; inset: 0; background: var(--copper);
+  content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: var(--copper);
   animation: preload-sweep 1.1s ease-in-out infinite;
 }
 @keyframes preload-sweep{
@@ -182,10 +182,10 @@ p{ margin: 0; }
   justify-content: center; overflow: hidden; background: var(--charcoal);
   padding: 140px 6vw 60px;
 }
-#hero .hero-photo{ position: absolute; inset: 0; z-index: 0; }
+#hero .hero-photo{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 0; }
 #hero .hero-photo img{ width: 100%; height: 100%; object-fit: cover; object-position: 92% 45%; opacity: .96; }
 .hero-overlay{
-  position: absolute; inset: 0; z-index: 1;
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 1;
   background:
     linear-gradient(180deg, rgba(16,20,18,.1) 0%, rgba(16,20,18,.04) 32%, rgba(16,20,18,.42) 100%),
     linear-gradient(100deg, rgba(16,20,18,.97) 0%, rgba(16,20,18,.94) 30%, rgba(16,20,18,.55) 52%, rgba(16,20,18,.1) 72%, rgba(16,20,18,0) 85%);
@@ -233,7 +233,7 @@ p{ margin: 0; }
 [data-label].media-fallback img{ display: none; }
 [data-label].media-fallback::after{
   content: attr(data-label);
-  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center;
   text-align: center; padding: 20px; font-family: var(--font-sans);
   font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
   color: var(--copper-light); border: 1px dashed var(--border-dark);
@@ -327,6 +327,7 @@ p{ margin: 0; }
 .fs-grid{
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   max-width: var(--max-width); margin: 0 auto;
+  align-items: start;
 }
 .fs-card{
   background: var(--bone); border: 1px solid var(--border-light); border-radius: 4px;
@@ -346,6 +347,7 @@ p{ margin: 0; }
 .product-grid{
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
   max-width: var(--max-width); margin: 0 auto;
+  align-items: start;
 }
 .product-card{
   background: var(--bone); border: 1px solid var(--border-light); border-radius: 4px; overflow: hidden;
@@ -442,7 +444,7 @@ p{ margin: 0; }
 .testimonial-slider{ max-width: 720px; margin: 0 auto; text-align: center; }
 .testimonial-track{ position: relative; min-height: 190px; }
 .testimonial{
-  display: none; opacity: 0; position: absolute; inset: 0;
+  display: none; opacity: 0; position: absolute; top: 0; right: 0; bottom: 0; left: 0;
   transition: opacity .6s var(--ease);
 }
 .testimonial.active{ display: block; opacity: 1; position: relative; }
@@ -474,7 +476,7 @@ p{ margin: 0; }
 .masonry-item:nth-child(3n+2) img{ aspect-ratio: 1/1; object-fit: cover; }
 .masonry-item:nth-child(3n) img{ aspect-ratio: 4/5; object-fit: cover; }
 .masonry-item::after{
-  content: '\002B'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  content: '\002B'; position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center;
   font-size: 26px; color: var(--parchment); background: rgba(28,36,32,0); opacity: 0;
   transition: opacity .3s, background .3s; pointer-events: none;
 }
@@ -530,6 +532,7 @@ p{ margin: 0; }
 .brochure-cards{
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   max-width: var(--max-width); margin: 0 auto;
+  align-items: start;
 }
 .brochure-card{
   display: block; background: var(--parchment); border: 1px solid var(--border-light); border-radius: 4px;
@@ -593,7 +596,7 @@ p{ margin: 0; }
    LIGHTBOX
    ========================================================================== */
 .lightbox{
-  position: fixed; inset: 0; z-index: 1000; background: rgba(20,24,21,.96);
+  position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1000; background: rgba(20,24,21,.96);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; visibility: hidden; transition: opacity .35s var(--ease), visibility .35s;
 }
@@ -646,6 +649,13 @@ p{ margin: 0; }
   #primary-nav ul{ flex-direction: column; align-items: flex-start; gap: 26px; }
   #primary-nav a.nav-cta{ margin-top: 10px; }
   #nav-toggle{ display: flex; }
+
+  /* darken the page behind the open drawer so it doesn't collide with content underneath */
+  body.nav-open::after{
+    content: '';
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 499;
+    background: rgba(16,20,18,.55);
+  }
 }
 
 @media (max-width: 720px){
@@ -691,4 +701,24 @@ p{ margin: 0; }
 
 @media (max-width: 460px){
   .product-grid{ grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   ASPECT-RATIO FALLBACK, for older Safari/iPadOS that doesn't support the
+   CSS aspect-ratio property (pre-iOS 15). Without this, image containers
+   can collapse to zero height and leave black gaps above/below the photo.
+   ========================================================================== */
+@supports not (aspect-ratio: 1/1){
+  .story-media, .smokehouse-media, .og-media, .product-media, .brochure-media{
+    position: relative; height: 0; overflow: hidden;
+  }
+  .story-media{ padding-top: 125%; }
+  .story-media.story-media-wide{ padding-top: 66.67%; }
+  .smokehouse-media{ padding-top: 133.33%; }
+  .og-media{ padding-top: 125%; }
+  .product-media{ padding-top: 75%; }
+  .brochure-media{ padding-top: 62.5%; }
+  .story-media img, .smokehouse-media img, .og-media img, .product-media img, .brochure-media img{
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;
+  }
 }
