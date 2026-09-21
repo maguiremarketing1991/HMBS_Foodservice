@@ -321,6 +321,35 @@ p{ margin: 0; }
 .og-logo-img{ height: 68px; width: auto; }
 .og-logo-slot span{ font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted-dark); }
 
+/* ---- Origin Green: Year One stat panel ---- */
+.stat-panel{ max-width: var(--max-width); margin: 56px auto 0; padding-top: 44px; border-top: 1px solid var(--border-dark); }
+.stat-panel-head{ text-align: center; margin-bottom: 40px; }
+.stat-panel-head .eyebrow{ justify-content: center; }
+.stat-panel-head h3{ font-size: clamp(20px, 2.4vw, 26px); color: var(--parchment); }
+.stat-panel-grid{ display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px; margin-bottom: 20px; }
+.stat-panel-card .icon{ width: 34px; height: 27px; color: var(--copper); margin-bottom: 16px; display: block; }
+.stat-panel-card .icon.tall{ width: 26px; height: 27px; }
+.stat-panel-card .top-row{ display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+.stat-panel-card .num{ font-family: var(--font-serif); font-size: 30px; color: var(--copper); line-height: 1; }
+.stat-panel-card .delta{ font-size: 12px; color: var(--copper-light); font-weight: 600; }
+.stat-panel-card .bar-track{ height: 7px; background: rgba(242,235,217,.14); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+.stat-panel-card .bar-fill{ height: 100%; background: var(--copper); border-radius: 4px; }
+.stat-panel-card .bar-labels{ display: flex; justify-content: space-between; font-size: 10.5px; color: var(--text-muted-dark); margin-bottom: 14px; }
+.stat-panel-card .caption{ font-size: 12px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: var(--parchment); margin-bottom: 4px; }
+.stat-panel-card .desc{ font-size: 12.5px; line-height: 1.5; color: var(--text-muted-dark); }
+.stat-panel-people{ background: rgba(0,0,0,.14); border-radius: 4px; padding: 22px 24px; display: flex; align-items: center; gap: 20px; }
+.stat-panel-people .icon{ width: 32px; height: 32px; color: var(--copper); flex-shrink: 0; }
+.stat-panel-people .num{ font-family: var(--font-serif); font-size: 34px; color: var(--copper); line-height: 1; flex-shrink: 0; }
+.stat-panel-people .desc{ font-size: 13px; line-height: 1.5; color: var(--text-muted-dark); }
+.stat-panel-people .desc strong{ color: var(--parchment); }
+@media (max-width: 900px){
+  .stat-panel-grid{ grid-template-columns: 1fr 1fr; row-gap: 32px; }
+  .stat-panel-people{ flex-direction: column; align-items: flex-start; text-align: left; }
+}
+@media (max-width: 560px){
+  .stat-panel-grid{ grid-template-columns: 1fr; }
+}
+
 /* ==========================================================================
    FOODSERVICE SOLUTIONS
    ========================================================================== */
